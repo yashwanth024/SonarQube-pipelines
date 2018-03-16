@@ -16,7 +16,12 @@ node {
       //junit '**/target/surefire-reports/TEST-*.xml'
       //archive 'target/*.jar'
    }
+   
     stage('Deploy to Dev') {
+      //junit '**/target/surefire-reports/TEST-*.xml'
+      //archive 'target/*.jar'
+   }
+   stage('Smoke Test Execution') {
       //junit '**/target/surefire-reports/TEST-*.xml'
       //archive 'target/*.jar'
    }
