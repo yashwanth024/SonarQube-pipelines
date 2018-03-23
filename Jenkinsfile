@@ -14,6 +14,11 @@ node {
        sh 'mvn test'
      }
    }
+   stage('SonarQube Analysis') {
+      withSonarQubeEnv("SonarQube") {
+         sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
+       }
+     }
     stage('Archival') {
       withMaven(jdk: 'JDK-1.8.151', maven: 'Maven-3.5.3') {
        sh 'mvn package'
