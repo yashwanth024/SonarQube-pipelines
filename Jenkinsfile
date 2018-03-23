@@ -16,8 +16,8 @@ node {
    }
    stage('SonarQube Analysis') {
       withSonarQubeEnv("SonarQube") {
-         sh 'mvn clean install'
-         sh 'mvn sonar:sonar'
+         //sh 'mvn clean install'
+         sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.4.0.905:sonar'
        }
      }
     stage('Archival') {
