@@ -15,11 +15,11 @@ node {
      }
    }
    stage('SonarQube Analysis') {
-      //def job = build job: 'SonarQubeJob'
-      withSonarQubeEnv("SonarQube") {
+      def job = build job: 'SonarJob'
+      //withSonarQubeEnv("SonarQube") {
          //sh 'mvn clean install'
-         sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.4.0.905:sonar'
-       }
+        // sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.4.0.905:sonar'
+      // }
      }
     stage('Archival') {
       withMaven(jdk: 'JDK-1.8.151', maven: 'Maven-3.5.3') {
