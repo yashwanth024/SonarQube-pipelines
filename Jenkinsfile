@@ -19,17 +19,25 @@ node {
       //withSonarQubeEnv("SonarQube") {
       //}
       withMaven(jdk: 'JDK-1.8.151', maven: 'Maven-3.5.3') {
-         withSonarQubeEnv("SonarQube") {
           sh ' mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar ' +
              ' -Dsonar.host.url=https://sonarcloud.io ' +
              ' -Dsonar.organization=pattabhi '+ 
              ' -Dsonar.login=df5bb81bae9ba310d6a38135b957227ba6ecd32c '
           }
       }
-     }
+   
+    stage("Quality Gate"){
+          timeout(time: 1, unit: 'HOURS') {
+              def qg = waitForQualityGate()
+              if (qg.status != 'OK') {
+                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
+              }
+          }
+      }
+   
     stage('Archival') {
       withMaven(jdk: 'JDK-1.8.151', maven: 'Maven-3.5.3') {
-       sh 'mvn package'
+       //sh 'mvn package'
      }
    }
      stage('Deploy to Artifactory Repo') {
