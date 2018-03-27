@@ -17,21 +17,14 @@ node {
    stage('SonarQube Analysis') {
       //def job = build job: 'SonarJob'
       //withSonarQubeEnv("SonarQube") {
-         withMaven(jdk: 'JDK-1.8.151', maven: 'Maven-3.5.3') {
-           sh ' mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=pattabhi -Dsonar.login=df5bb81bae9ba310d6a38135b957227ba6ecd32c '
- 
-         //sh 'mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package org.sonarsource.scanner.maven:sonar-maven-plugin:3.4.0.905:sonar ' +
-            //' -Dsonar.host.url=https://sonarcloud.io '+
-            //' -Dsonar.organization=pattabhi '+
-            //' -Dsonar.projectKey=Pattabhi:com.pattabhi ' +
-            //' -Dsonar.login=pattabhi ' 
-            //' -Dsonar.password=df5bb81bae9ba310d6a38135b957227ba6ecd32c ' 
-            
-            
-            //clean org.jacoco:jacoco-maven-plugin:prepare-agent package org.sonarsource.scanner.maven:sonar-maven-plugin:3.4.0.905:sonar 
-            //-Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=xxxx-github -Dsonar.login=yyyy
-        }
       //}
+      withMaven(jdk: 'JDK-1.8.151', maven: 'Maven-3.5.3') {
+          sh ' mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar ' +
+             ' -Dsonar.host.url=https://sonarcloud.io ' +
+             ' -Dsonar.organization=pattabhi '+ 
+             ' -Dsonar.login=df5bb81bae9ba310d6a38135b957227ba6ecd32c '
+      }
+      
      }
     stage('Archival') {
       withMaven(jdk: 'JDK-1.8.151', maven: 'Maven-3.5.3') {
@@ -43,18 +36,11 @@ node {
 
    
     stage('Deploy to Dev') {
-      //junit '**/target/surefire-reports/TEST-*.xml'
-      //archive 'target/*.jar'
+      
    }
    stage('Smoke Test Execution') {
-      //junit '**/target/surefire-reports/TEST-*.xml'
-      //archive 'target/*.jar'
+      
    }
 
     
-   stage('Smoke Test Execution') {
-      //junit '**/target/surefire-reports/TEST-*.xml'
-      //archive 'target/*.jar'
-    }
-
 }
