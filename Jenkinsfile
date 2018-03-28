@@ -26,14 +26,14 @@ node {
           }
       }
    
-    stage("Quality Gate"){
-          timeout(time: 1, unit: 'HOURS') {
-              def qg = waitForQualityGate()
-              if (qg.status != 'OK') {
-                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
-              }
-          }
-      }
+    //stage("Quality Gate"){
+          //timeout(time: 1, unit: 'HOURS') {
+             // def qg = waitForQualityGate()
+              //if (qg.status != 'OK') {
+                //  error "Pipeline aborted due to quality gate failure: ${qg.status}"
+              //}
+         // }
+     // }
    
     stage('Archival') {
       withMaven(jdk: 'JDK-1.8.151', maven: 'Maven-3.5.3') {
