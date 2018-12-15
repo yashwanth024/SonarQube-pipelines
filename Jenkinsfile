@@ -5,7 +5,7 @@ node {
     git credentialsId: 'Github-ID', url: 'https://github.com/InfinityVegas/wannacry.git'
    }
    stage('Build') {
-     withMaven( 'maven: 'Maven-3.5.3') {
+     withMaven( maven: 'Maven-3.5.3') {
        sh 'mvn clean compile'
      }
    }
