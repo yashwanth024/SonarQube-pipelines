@@ -5,12 +5,12 @@ node {
     git credentialsId: 'Github-ID', url: 'https://github.com/InfinityVegas/wannacry.git'
    }
    stage('Build') {
-     withMaven(jdk: 'JDK-1.8.151', maven: 'Maven-3.5.3') {
+     withMaven(jdk: 'JDK-10.0.1', maven: 'Maven-3.5.3') {
        sh 'mvn clean compile'
      }
    }
    stage('Unit Test') {
-     withMaven(jdk: 'JDK-1.8.151', maven: 'Maven-3.5.3') {
+     withMaven(jdk: 'JDK-10.0.1', maven: 'Maven-3.5.3') {
        sh 'mvn test'
      }
    }
