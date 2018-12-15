@@ -18,7 +18,7 @@ node {
       //def job = build job: 'SonarJob'
       //withSonarQubeEnv("SonarQube") {
       //}
-      withMaven(jdk: 'JDK-1.8.151', maven: 'Maven-3.5.3') {
+      withMaven(jdk: 'JDK-10.0.1', maven: 'Maven-3.5.3') {
           sh ' mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar ' +
              ' -Dsonar.host.url=https://sonarcloud.io ' +
              ' -Dsonar.organization=pattabhi '+ 
@@ -36,7 +36,7 @@ node {
      // }
    
     stage('Archival') {
-      withMaven(jdk: 'JDK-1.8.151', maven: 'Maven-3.5.3') {
+      withMaven(jdk: 'JDK-10.0.1', maven: 'Maven-3.5.3') {
        //sh 'mvn package'
      }
    }
