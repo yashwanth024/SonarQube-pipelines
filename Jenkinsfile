@@ -39,7 +39,7 @@ node {
       withMaven( maven: 'LOCALMAVEN')
        //sh 'mvn package'
      }
-   }
+   
      stage('Deploy to Artifactory Repo') {
      }
 
