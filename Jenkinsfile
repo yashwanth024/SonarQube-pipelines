@@ -5,12 +5,12 @@ node {
     git credentialsId: 'Github-ID', url: 'https://github.com/InfinityVegas/wannacry.git'
    }
    stage('Build') {
-     withMaven(jdk: 'JDK-10.0.1', maven: 'Maven-3.5.3') {
+     withMaven( 'maven: 'Maven-3.5.3') {
        sh 'mvn clean compile'
      }
    }
    stage('Unit Test') {
-     withMaven(jdk: 'JDK-10.0.1', maven: 'Maven-3.5.3') {
+     withMaven(maven: 'Maven-3.5.3') {
        sh 'mvn test'
      }
    }
@@ -18,7 +18,7 @@ node {
       //def job = build job: 'SonarJob'
       //withSonarQubeEnv("SonarQube") {
       //}
-      withMaven(jdk: 'JDK-10.0.1', maven: 'Maven-3.5.3') {
+      withMaven( maven: 'Maven-3.5.3') {
           sh ' mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar ' +
              ' -Dsonar.host.url=https://sonarcloud.io ' +
              ' -Dsonar.organization=pattabhi '+ 
@@ -36,7 +36,7 @@ node {
      // }
    
     stage('Archival') {
-      withMaven(jdk: 'JDK-10.0.1', maven: 'Maven-3.5.3') {
+      withMaven( maven: 'Maven-3.5.3') {
        //sh 'mvn package'
      }
    }
